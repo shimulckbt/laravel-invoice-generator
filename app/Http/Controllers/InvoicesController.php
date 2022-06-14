@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -13,6 +14,9 @@ class InvoicesController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request->customer);
+
+        Customer::create($request->customer);
+        return 'ok done';
     }
 }
