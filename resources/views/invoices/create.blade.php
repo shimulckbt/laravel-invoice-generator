@@ -81,7 +81,7 @@
                                             <tr id='addr0'>
                                                 <td>1</td>
                                                 <td><input type="text" name='product[]' placeholder='Enter Product Name' class="form-control" /></td>
-                                                <td><input type="number" name='qty[]' placeholder='Enter Qty' class="form-control qty" step="0" min="0" /></td>
+                                                <td><input type="number" name='quantity[]' placeholder='Enter Qty' class="form-control qty" step="0" min="0" /></td>
                                                 <td><input type="number" name='price[]' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" /></td>
                                                 <td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly /></td>
                                             </tr>
@@ -92,8 +92,8 @@
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-12">
-                                    <button id="add_row" class="btn btn-primary float-start">Add Row</button>
-                                    <button id='delete_row' class="float-end btn btn-info">Delete Row</button>
+                                    <button id="add_row" type="button" class="btn btn-primary float-start">Add Row</button>
+                                    <button id='delete_row' type="button" class="float-end btn btn-info">Delete Row</button>
                                 </div>
                             </div>
                             <div class="row clearfix" style="margin-top:20px">
@@ -143,12 +143,14 @@
     $(document).ready(function() {
         var i = 1;
         $("#add_row").click(function() {
+            // e.preventDefault();
             b = i - 1;
             $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
             $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
             i++;
         });
         $("#delete_row").click(function() {
+            // e.preventDefault();
             if (i > 1) {
                 $("#addr" + (i - 1)).html('');
                 i--;
