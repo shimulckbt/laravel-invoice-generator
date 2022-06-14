@@ -17,7 +17,7 @@
                                     <input type="text" name="invoice[invoice_number]" class="form-control" placeholder="AA001" required>
                                     Invoice Date
                                     <br>
-                                    <input type="text" name="invoice[invoice_number]" class="form-control" value="{{date('Y-m-d')}}" required>
+                                    <input type="text" name="invoice[invoice_date]" class="form-control" value="{{date('Y-m-d')}}" required>
                                 </div>
                             </div>
                             <div class="row clearfix" style="margin-top:20px">
@@ -109,7 +109,7 @@
                                                     <th class="text-center">Tax</th>
                                                     <td class="text-center">
                                                         <div class="input-group mb-2 mb-sm-0">
-                                                            <input type="number" class="form-control" id="tax" placeholder="0">
+                                                            <input type="number" class="form-control" id="tax" name="invoice[tax_percent]" placeholder="0">
                                                             <div class="input-group-addon">%</div>
                                                         </div>
                                                     </td>
