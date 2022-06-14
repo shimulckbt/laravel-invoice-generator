@@ -3,7 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoicesController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,5 +24,8 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('invoices/create', [InvoicesController::class, 'create'])->name('invoices.create');
+    // Route::get('invoices/create', [InvoicesController::class, 'create'])->name('invoices.create');
+    // Route::post('invoices/store', [InvoicesController::class, 'store'])->name('invoice.store');
+
+    Route::resource('invoices', InvoicesController::class);
 });
