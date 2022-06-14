@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\CustomerField;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
@@ -29,6 +30,16 @@ class InvoicesController extends Controller
                     'name' => $request->product[$i],
                     'quantity' => $request->quantity[$i],
                     'price' => $request->price[$i],
+                ]);
+            }
+        }
+
+        for ($i = 0; $i < count($request->customer_fields); $i++) {
+            if (isset($request->customer_fields[$i]['field_key']) && isset($request->customer_fields[$i]['field_value'])) {
+                CustomerField::create([
+                    'customer_id' => $customer->id,
+                    'field_key' => $request->customer_fields[$i]['field_key'],
+                    'field_value' => $request->customer_fields[$i]['field_value'],
                 ]);
             }
         }
