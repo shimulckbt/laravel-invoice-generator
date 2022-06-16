@@ -23,13 +23,15 @@
                             <th>Invoice Number</th>
                             <th>Customer</th>
                             <th>Total Amount</th>
+                            <th></th>
                         </tr>
                         @foreach($invoices as $invoice)
                         <tr>
                             <th>{{$invoice->invoice_date}}</th>
                             <th>{{$invoice->invoice_number}}</th>
                             <th>{{$invoice->customer->name}}</th>
-                            <th>{{$invoice->total_amount}}</th>
+                            <th>{{number_format($invoice->total_amount,2)}}</th>
+                            <th><a href="{{route('invoices.show', $invoice->id)}}" class="btn btn-sm btn-info">View Invoice</a></th>
                         </tr>
                         @endforeach
                     </table>

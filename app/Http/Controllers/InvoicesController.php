@@ -45,4 +45,10 @@ class InvoicesController extends Controller
         }
         return 'ok done';
     }
+
+    public function show(Invoice $invoice)
+    {
+        // dd($invoice->id);
+        return view('invoices.show', compact('invoice'));
+    }
 }
