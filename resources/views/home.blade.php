@@ -17,14 +17,14 @@
                     <a href="{{route('invoices.create')}}" class="btn btn-primary">Add New Invoice</a>
 
                     <br><br>
-                    <table>
+                    <table class="table">
                         <tr>
                             <th>Invoice Date</th>
                             <th>Invoice Number</th>
                             <th>Customer</th>
                             <th>Total Amount</th>
                         </tr>
-                        @foreach
+                        @foreach($invoices as $invoice)
                         <tr>
                             <th>{{$invoice->invoice_date}}</th>
                             <th>{{$invoice->invoice_number}}</th>
