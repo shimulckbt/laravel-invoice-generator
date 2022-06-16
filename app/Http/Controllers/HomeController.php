@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,5 +27,10 @@ class HomeController extends Controller
     {
         $invoices = Invoice::with('customer')->get();
         return view('home', compact('invoices'));
+    }
+
+    public function invoice_item()
+    {
+        return $this->hasMany(InvoiceItem::class);
     }
 }
