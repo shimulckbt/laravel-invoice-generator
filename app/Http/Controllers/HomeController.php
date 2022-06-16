@@ -28,9 +28,4 @@ class HomeController extends Controller
         $invoices = Invoice::with('customer')->get();
         return view('home', compact('invoices'));
     }
-
-    public function invoice_item()
-    {
-        return $this->hasMany(InvoiceItem::class);
-    }
 }

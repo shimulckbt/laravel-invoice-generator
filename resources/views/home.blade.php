@@ -29,7 +29,7 @@
                             <th>{{$invoice->invoice_date}}</th>
                             <th>{{$invoice->invoice_number}}</th>
                             <th>{{$invoice->customer->name}}</th>
-                            <th>0</th>
+                            <th>{{$invoice->total_amount}}</th>
                         </tr>
                         @endforeach
                     </table>
