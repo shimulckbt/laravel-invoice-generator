@@ -15,6 +15,24 @@
                     @endif
 
                     <a href="{{route('invoices.create')}}" class="btn btn-primary">Add New Invoice</a>
+
+                    <br><br>
+                    <table>
+                        <tr>
+                            <th>Invoice Date</th>
+                            <th>Invoice Number</th>
+                            <th>Customer</th>
+                            <th>Total Amount</th>
+                        </tr>
+                        @foreach
+                        <tr>
+                            <th>{{$invoice->invoice_date}}</th>
+                            <th>{{$invoice->invoice_number}}</th>
+                            <th>{{$invoice->customer->name}}</th>
+                            <th>0</th>
+                        </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>
