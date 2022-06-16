@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::all();
+        $invoices = Invoice::with('customer')->get();
         return view('home', compact('invoices'));
     }
 }
