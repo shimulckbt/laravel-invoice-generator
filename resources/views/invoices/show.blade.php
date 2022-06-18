@@ -19,11 +19,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Crete Invoice</div>
-                <form action="{{route('invoices.store')}}" method="POST">
-                    @csrf
                     <div class="card-body">
                         <div class="container">
                             <div class="row clearfix">
+                                 @if (config('invoices.logo_file') != '')
+                                <div class="col-md-12 text-center">
+                                    <img src="{{ config('invoices.logo_file') }}" />
+                                </div>
+                                 @endif
                                 <div class="col-md-4 offset-4 text-center">
                                     <b>Invoice: {{$invoice->invoice_number}}</b>
                                     <br>                                    
@@ -65,15 +68,19 @@
                                     @endif
                                     </div>
                                     <div class="float-end col-md-4">
-                                        <b>Seller details</b>:
+                                        <b>From</b>: {{ config('invoices.seller.name') }}
+                                    <br /><br />
+                                    <b>Address</b>: {{ config('invoices.seller.address') }}
+                                    @if (config('invoices.seller.email') != '')
                                         <br /><br />
-                                        Your company name
-                                        <br />
-                                        1 Street Name, London, United Kingdom
-                                        <br />
-                                        Email: xxxxx@company.com
-                                        <br />
-                                        VAT Number: xx xxxxx xxxx
+                                        <b>Email</b>: {{ config('invoices.seller.email') }}
+                                    @endif
+                                    @if (is_array(config('invoices.seller.additional_info')))
+                                        @foreach (config('invoices.seller.additional_info') as $key => $value)
+                                            <br /><br />
+                                            <b>{{ $key }}</b>: {{ $value }}
+                                        @endforeach
+                                    @endif
                                     </div>
                                 </div>
                             </div>
@@ -132,8 +139,12 @@
                                 </div>
                             </div>                            
                         </div>
+                        <div class="row clearfix" style="margin-top:20px">
+                            <div class="col-md-12">
+                                {{ config('invoices.footer_text') }}
+                            </div>
+                        </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>
