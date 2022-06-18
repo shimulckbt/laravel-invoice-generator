@@ -88,16 +88,15 @@
                                                 <th class="text-center"> Price </th>
                                                 <th class="text-center"> Total </th>
                                             </tr>
-                                        </thead>
+                                        </thead>                                         
                                         <tbody>
-                                            @foreach($invoice->invoice_items as $item)
+                                            @foreach($invoice->invoice_item as $item)
                                             <tr id='addr0'>
-                                                <td>{{$loop->index}}</td>
+                                                <td>{{$loop->iteration}}</td>
                                                 <td>{{$item->name}}</td>
                                                 <td>{{$item->quantity}}</td>
                                                 <td>{{$item->price}}</td>
-                                                <td>{{$item->quantity}}</td>
-                                                <td>{{$item->name}}</td>
+                                                <td>{{number_format($item->quantity * $item->price, 2)}}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -111,24 +110,24 @@
                                             <tbody>
                                                 <tr>
                                                     <th class="text-center" width="50%">Sub Total</th>
-                                                    <td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+                                                    <td class="text-center">{{ $invoice->sub_total }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">Tax</th>
                                                     <td class="text-center">
                                                         <div class="input-group mb-2 mb-sm-0">
-                                                            <input type="number" class="form-control" id="tax" name="invoice[tax_percent]" placeholder="0">
+                                                            {{ $invoice->tax_percent }}
                                                             <div class="input-group-addon">%</div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">Tax Amount</th>
-                                                    <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly /></td>
+                                                    <td class="text-center"> {{ $invoice->tax_amount }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">Grand Total</th>
-                                                    <td class="text-center"><input type="number" name='total_amount' id="total_amount" placeholder='0.00' class="form-control" readonly /></td>
+                                                    <td class="text-center"> {{ $invoice->grand_total }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
