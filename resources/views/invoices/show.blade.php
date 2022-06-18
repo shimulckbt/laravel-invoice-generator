@@ -110,24 +110,21 @@
                                             <tbody>
                                                 <tr>
                                                     <th class="text-center" width="50%">Sub Total</th>
-                                                    <td class="text-center">{{ $invoice->sub_total }}</td>
+                                                    <td class="text-center">{{ number_format($invoice->total_amount, 2) }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">Tax</th>
                                                     <td class="text-center">
-                                                        <div class="input-group mb-2 mb-sm-0">
-                                                            {{ $invoice->tax_percent }}
-                                                            <div class="input-group-addon">%</div>
-                                                        </div>
+                                                        {{ $invoice->tax_percent }}%
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">Tax Amount</th>
-                                                    <td class="text-center"> {{ $invoice->tax_amount }}</td>
+                                                    <td class="text-center"> {{ number_format($invoice->total_amount * $invoice->tax_percent/100) }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">Grand Total</th>
-                                                    <td class="text-center"> {{ $invoice->grand_total }}</td>
+                                                    <td class="text-center"> {{ number_format($invoice->total_amount + $invoice->total_amount * $invoice->tax_percent/100, 2) }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
