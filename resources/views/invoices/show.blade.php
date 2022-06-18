@@ -34,34 +34,35 @@
                             <div class="row clearfix" style="margin-top:20px">
                                 <div class="col-md-12">
                                     <div class="float-start col-md-6">
-                                        Name*: <input type="text" name='customer[name]' class="form-control" required />
-                                        Address*: <input type="text" name='customer[address]' class="form-control" required />
-                                        Postcode/ZIP: <input type="text" name='customer[postcode]' class="form-control" />
-                                        City*: <input type="text" name='customer[city]' class="form-control" required />
-                                        State: <input type="text" name='customer[state]' class="form-control" />
-                                        Country*: <input type="text" name='customer[country]' class="form-control" required />
-                                        Phone: <input type="text" name='customer[phone]' class="form-control" />
-                                        Email: <input type="email" name='customer[email]' class="form-control" />
-                                        <br />
-                                        <b>Additional fields</b> (optional):
-                                        <br />
-                                        <table class="table table-bordered table-hover">
-                                            <tbody>
-                                                <tr>
-                                                    <th class="text-center" width="50%">Field</th>
-                                                    <th class="text-center">Value</th>
-                                                </tr>
-                                                @for ($i = 0; $i <= 2; $i++) <tr>
-                                                    <td class="text-center">
-                                                        <input type="text" name='customer_fields[{{ $i }}][field_key]' class="form-control" />
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input type="text" name='customer_fields[{{ $i }}][field_value]' class="form-control" />
-                                                    </td>
-                                                    </tr>
-                                                    @endfor
-                                            </tbody>
-                                        </table>
+                                        <b>To</b>:
+                                    {{ $invoice->customer->name }}
+                                    <br /><br />
+
+                                    <b>Address</b>:
+                                    {{ $invoice->customer->address }}
+                                    @if ($invoice->customer->postcode != '')
+                                        ,
+                                        {{ $invoice->customer->postcode }}
+                                    @endif
+                                    , {{ $invoice->customer->city }}
+                                    @if ($invoice->customer->state != '')
+                                        ,
+                                        {{ $invoice->customer->state }}
+                                    @endif
+                                    , {{ $invoice->customer->country }}
+
+                                    @if ($invoice->customer->phone != '')
+                                        <br /><br /><b>Phone</b>: {{ $invoice->customer->phone }}
+                                    @endif
+                                    @if ($invoice->customer->email != '')
+                                        <br /><br /><b>Email</b>: {{ $invoice->customer->email }}
+                                    @endif
+
+                                    @if ($invoice->customer->customer_fields)
+                                        @foreach ($invoice->customer->customer_fields as $field)
+                                            <br /><br /><b>{{ $field->field_key }}</b>: {{ $field->field_value }}
+                                        @endforeach
+                                    @endif
                                     </div>
                                     <div class="float-end col-md-4">
                                         <b>Seller details</b>:
