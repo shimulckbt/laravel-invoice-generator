@@ -25,7 +25,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     // Route::get('invoices/create', [InvoicesController::class, 'create'])->name('invoices.create');
-    // Route::post('invoices/store', [InvoicesController::class, 'store'])->name('invoice.store');
 
     Route::resource('invoices', InvoicesController::class);
+    Route::post('invoices/download', [InvoicesController::class, 'download'])->name('invoices.download');
 });
