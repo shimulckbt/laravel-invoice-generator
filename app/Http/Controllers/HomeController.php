@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $invoices = Invoice::with('customer')->latest()->get();
+
         return view('home', compact('invoices'));
     }
 }
