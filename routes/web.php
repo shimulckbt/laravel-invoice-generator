@@ -27,5 +27,5 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('invoices/create', [InvoicesController::class, 'create'])->name('invoices.create');
 
     Route::resource('invoices', InvoicesController::class);
-    Route::post('invoices/download', [InvoicesController::class, 'download'])->name('invoices.download');
+    Route::get('invoices/download/{id}', [InvoicesController::class, 'download'])->name('invoices.download');
 });

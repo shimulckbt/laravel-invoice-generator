@@ -2,11 +2,15 @@
 
 @section('content')
     <div class="clearfix">
-        @if (config('invoices.logo_file') != '')
+        {{-- @if (config('invoices.logo_file') != '')
             <div class="text-center">
                 <img src="{{ asset(config('invoices.logo_file')) }}" />
             </div>
-        @endif
+        @endif --}}
+
+        <div class="text-center">
+            <img src="{{ asset('images/logo.png') }}" />
+        </div>
 
         <div class="text-center">
             <b>Invoice {{ $invoice->invoice_number }}</b>
@@ -77,7 +81,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($invoice->invoice_items as $item)
+                @foreach ($invoice->invoice_item as $item)
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
