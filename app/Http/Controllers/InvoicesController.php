@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\CustomerField;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class InvoicesController extends Controller
     public function create()
     {
         $customers = Customer::latest()->get();
-        return view('invoices.create', compact('customers'));
+        $products = Product::latest()->get();
+        return view('invoices.create', compact('customers', 'products'));
     }
 
     public function store(Request $request)
