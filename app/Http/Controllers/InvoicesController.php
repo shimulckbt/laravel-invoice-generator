@@ -6,9 +6,8 @@ use App\Models\Customer;
 use App\Models\CustomerField;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
-// use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
-use PDF;
 
 class InvoicesController extends Controller
 {
@@ -58,7 +57,7 @@ class InvoicesController extends Controller
     {
         $invoice = Invoice::findOrFail($invoice_id);
         // dd($invoice->all());
-        $pdf = PDF::loadView('invoices.pdf', compact('invoice'));
+        $pdf = FacadePdf::loadView('invoices.pdf', compact('invoice'));
 
         return $pdf->download('invoice.pdf');
     }
