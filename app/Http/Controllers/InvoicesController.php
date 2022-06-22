@@ -13,7 +13,8 @@ class InvoicesController extends Controller
 {
     public function create()
     {
-        return view('invoices.create');
+        $customers = Customer::latest()->get();
+        return view('invoices.create', compact('customers'));
     }
 
     public function store(Request $request)
@@ -21,9 +22,9 @@ class InvoicesController extends Controller
         // dd($request->customer);
         // dd($request->invoice);  
 
-        $customer = Customer::create($request->customer);
+        // $customer = Customer::create($request->customer);
 
-        $invoice = Invoice::create($request->invoice + ['customer_id' => $customer->id]);
+        $invoice = Invoice::create($request->invoice);
         for ($i = 0; $i < count($request->product); $i++) {
             if (isset($request->quantity[$i]) && isset($request->price[$i])) {
                 InvoiceItem::create([
@@ -35,16 +36,16 @@ class InvoicesController extends Controller
             }
         }
 
-        for ($i = 0; $i < count($request->customer_fields); $i++) {
-            if (isset($request->customer_fields[$i]['field_key']) && isset($request->customer_fields[$i]['field_value'])) {
-                CustomerField::create([
-                    'customer_id' => $customer->id,
-                    'field_key' => $request->customer_fields[$i]['field_key'],
-                    'field_value' => $request->customer_fields[$i]['field_value'],
-                ]);
-            }
-        }
-        return 'ok done';
+        // for ($i = 0; $i < count($request->customer_fields); $i++) {
+        //     if (isset($request->customer_fields[$i]['field_key']) && isset($request->customer_fields[$i]['field_value'])) {
+        //         CustomerField::create([
+        //             'customer_id' => $customer->id,
+        //             'field_key' => $request->customer_fields[$i]['field_key'],
+        //             'field_value' => $request->customer_fields[$i]['field_value'],
+        //         ]);
+        //     }
+        // }
+        return route('home');
     }
 
     public function show(Invoice $invoice)
