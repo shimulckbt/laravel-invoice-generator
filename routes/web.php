@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -30,4 +31,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('invoices', InvoicesController::class);
     Route::get('invoices/download/{id}', [InvoicesController::class, 'download'])->name('invoices.download');
     Route::resource('customers', CustomersController::class);
+    Route::resource('products', ProductController::class);
 });
