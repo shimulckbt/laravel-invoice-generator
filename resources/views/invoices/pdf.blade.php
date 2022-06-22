@@ -8,9 +8,9 @@
             </div>
         @endif --}}
 
-        <div class="text-center">
+        {{-- <div class="text-center">
             <img src="{{ asset('images/logo.png') }}" />
-        </div>
+        </div> --}}
 
         <div class="text-center">
             <b>Invoice {{ $invoice->invoice_number }}</b>
