@@ -19,7 +19,21 @@ class InvoicesController extends Controller
         return view('invoices.create', compact('customers', 'products'));
     }
 
-
+    public function store(Request $request)
+    {
+        $invoice = Invoice::create($request->invoice);
+        for ($i = 0; $i < count($request->product); $i++) {
+            if (isset($request->quantity[$i]) && isset($request->price[$i])) {
+                InvoiceItem::create([
+                    'invoice_id' => $invoice->id,
+                    'name' => $request->product[$i],
+                    'quantity' => $request->quantity[$i],
+                    'price' => $request->price[$i],
+                ]);
+            }
+        }
+        return route('home');
+    }
 
     public function show(Invoice $invoice)
     {
