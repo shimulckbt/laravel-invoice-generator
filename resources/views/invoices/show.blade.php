@@ -92,7 +92,9 @@
                                                 <th class="text-center"> # </th>
                                                 <th class="text-center"> Product </th>
                                                 <th class="text-center"> Qty </th>
-                                                <th class="text-center"> Price </th>
+                                                <th class="text-center"> Price
+                                                    ({{ config('invoices.currency') }})
+                                                </th>
                                                 <th class="text-center"> Total </th>
                                             </tr>
                                         </thead>
