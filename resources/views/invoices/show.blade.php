@@ -52,7 +52,7 @@
                                             ,
                                             {{ $invoice->customer->state }}
                                         @endif
-                                        , {{ $invoice->customer->country }}
+                                        , {{ $invoice->customer->country->title }}
 
                                         @if ($invoice->customer->phone != '')
                                             <br /><br /><b>Phone</b>: {{ $invoice->customer->phone }}

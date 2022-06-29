@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
-            $table->string('invoice_number');
-            $table->date('invoice_date');
-            $table->foreignId('customer_id')->constrained();
-            $table->decimal('tax_percent')->default(0);
-            $table->timestamps();
+        Schema::table('customers', function (Blueprint $table) {
+            $table->dropColumn('country');
+            $table->foreignId('country_id')->constrained();
         });
     }
 
@@ -30,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::table('customers', function (Blueprint $table) {
+            $table->dropColumn('country_id');
+        });
     }
 };

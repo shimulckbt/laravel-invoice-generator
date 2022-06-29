@@ -36,7 +36,7 @@
                                     <td>{{ $customer->postcode }}</td>
                                     <td>{{ $customer->city }}</td>
                                     <td>{{ $customer->state }}</td>
-                                    <td>{{ $customer->country }}</td>
+                                    <td>{{ $customer->country->title ?? '' }}</td>
                                     <td>{{ $customer->phone }}</td>
                                     <td>{{ $customer->email }}</td>
                                 </tr>
